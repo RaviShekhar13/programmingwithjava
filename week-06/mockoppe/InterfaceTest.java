@@ -6,7 +6,7 @@ import java.util.*;
 // import java.util.stream.*;
 interface Appraisable {
     default void appraisal(Teacher t) {
-        System.out.println("--------Inside Appraisable");
+        // System.out.println("--------Inside Appraisable");
         t.setSalary(t.getSalary() + (t.getstuPassPer() / 100) * 5000);
     }
 
@@ -16,7 +16,7 @@ interface Appraisable {
 // Define interface SpecialAppraisable
 interface SpecialAppraisable extends Appraisable {
     default void spAppraisal(Teacher t) {
-        System.out.println("--------Inside SpecialAppraisable");
+        // System.out.println("--------Inside SpecialAppraisable");
 
         t.setSalary(t.getSalary() + (t.getstuPassPer() / 100) * 10000);
     }
@@ -50,7 +50,7 @@ class Teacher implements SpecialAppraisable {
     }
 
     public void checkAndUpdateSalary() {
-        System.out.println("Inside checkAndUpdateSalary");
+        // System.out.println("Inside checkAndUpdateSalary");
         if (stuPassPer >= 60 && stuPassPer < 75)
             appraisal(this);
         else if (stuPassPer >= 75 && stuPassPer <= 100)
@@ -61,7 +61,10 @@ class Teacher implements SpecialAppraisable {
 public class InterfaceTest {
     // Define method printUpdatedTeachList
     static void printUpdatedTeachList(Teacher[] t) {
-        Arrays.stream(t).forEach(e -> e.checkAndUpdateSalary());
+        Arrays.stream(t).forEach(e -> {
+            e.checkAndUpdateSalary();
+            System.out.println(e);
+        });
     }
 
     public static void main(String[] args) {
